@@ -23,7 +23,7 @@ class RegisterController extends Controller
 
     protected function redirectTo()
     {
-        dd('here');
+     
         if (Auth::user()->user_type ==2) { //tailor
             return ('tailor/profile/' . Auth::user()->name);
         }
@@ -77,6 +77,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'user_type' => $data['user_type']
         ]);
-        return ('/welcome');
+        return ('/');
     }
 }
