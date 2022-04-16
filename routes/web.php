@@ -7,6 +7,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SeekerController;
 use App\Http\Controllers\SiteInformationController;
 use App\Http\Controllers\TailorController;
@@ -45,6 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    Route::post('/addtocart/{id}', [App\Http\Controllers\ClothController::class, 'addToCart'])->name('addToCart');
+    Route::get('/myorder', [OrderController::class, 'myOrder'])->name('myorder');
 
     Route::group(['middleware' => 'admin'], function () {
           //fabrics

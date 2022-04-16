@@ -52,8 +52,11 @@ class WelcomeController extends Controller
     }
 
     public function productDetail($item_id){
-        return view('front-end.detail',[
-            'cloth'=>Cloth::where('id',$item_id)->first()
+        $cloth=Cloth::where('id',$item_id)->first();
+        $clothtype=Cloth::where('type',$cloth->type)->get();
+        return view('cloth.detail',[
+            'cloth'=>$cloth,
+            'clothtype'=>$clothtype
         ]);
 
         }

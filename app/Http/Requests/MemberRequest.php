@@ -22,8 +22,7 @@ class MemberRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-       
+    {     
         return [
            
             'name' => 'required|string',

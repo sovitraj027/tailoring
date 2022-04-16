@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CartRequest;
 use App\Http\Requests\ClothRequest;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Cloth;
 use App\Models\Color;
@@ -104,6 +106,18 @@ class ClothController extends Controller
         return redirect()->route('clothes.index')->with('error', 'Cloth Delete Successfully!');
 
     }
-
+   
+    public function addToCart(CartRequest $request, $id){
+        $randomNumber = random_int(1000, 9999);
+        $requestData=[
+            'category_id'=>$request->category_id,
+            'user_id'=>Auth()->user()->id,
+            'order_number'=>$randomNumber,
+            'quantity'=>$request->quantity,
+            'cloth_id'=>$id
+        ];
+        Cart::create($requestData);
+        return redirect()->route('welcome')->with('success', 'Successfully!');
+    }
   
 }

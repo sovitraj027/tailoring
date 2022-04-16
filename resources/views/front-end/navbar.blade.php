@@ -18,7 +18,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{route('about')}}">About us</a>
                 </li> 
-              
+                @if (!Auth::user())
                 @if (Route::has('login'))
                   <li class="nav-item">
                       <a class="nav-link" href="{{ route('login') }}">log in</a>
@@ -31,8 +31,13 @@
                         <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
                     @endif 
+                  @endif
 
                   @if (Auth::user())
+             
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('myorder')}}">My order</a>
+                  </li> 
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('getMembership')}}">Membership</a>
                   </li> 

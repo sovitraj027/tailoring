@@ -18,7 +18,7 @@
                             </h5>
                         </div>
                         
-                       
+              
                         <div class="img_container ">
                             
                                 @foreach ($cloth->designs as $item) 
