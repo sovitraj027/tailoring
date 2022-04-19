@@ -46,8 +46,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    Route::post('/addtocart/{id}', [App\Http\Controllers\ClothController::class, 'addToCart'])->name('addToCart');
+    Route::post('/addtocart/{id}', [App\Http\Controllers\OrderController::class, 'addToCart'])->name('addToCart');
     Route::get('/myorder', [OrderController::class, 'myOrder'])->name('myorder');
+    Route::post('/remove/cart/{id}',[OrderController::class,'removeCart'])->name('removeCart');
 
     Route::group(['middleware' => 'admin'], function () {
           //fabrics

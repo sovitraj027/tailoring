@@ -46,12 +46,7 @@
                                     <input type="radio" id="contactChoice1"
                                     name="category_id" value="{{$category->id}}">
                                 <label for="category_id">{{$category->name}}</</label>
-                                @error('category_id')
-                                <div class="invalid-feedback">
-                                 
-                                    {{$message}}
-                                </div>
-                                @enderror
+                             
                                     @endforeach
                                 </h5>
                              

@@ -107,17 +107,6 @@ class ClothController extends Controller
 
     }
    
-    public function addToCart(CartRequest $request, $id){
-        $randomNumber = random_int(1000, 9999);
-        $requestData=[
-            'category_id'=>$request->category_id,
-            'user_id'=>Auth()->user()->id,
-            'order_number'=>$randomNumber,
-            'quantity'=>$request->quantity,
-            'cloth_id'=>$id
-        ];
-        Cart::create($requestData);
-        return redirect()->route('welcome')->with('success', 'Successfully!');
-    }
+
   
 }

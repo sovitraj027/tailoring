@@ -16,5 +16,8 @@ class Category extends Model
     {
         return $this->belongsToMany(Cloth::class);
     }
+    public function cart(){
+        return $this->hasOne(Category::class);
+    }
 
 }

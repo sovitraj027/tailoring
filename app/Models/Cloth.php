@@ -27,4 +27,8 @@ public function Designs(){
     return $this->hasMany(ClothDesign::class);
 }
 
+public function cart(){
+    return $this->hasOne(Cart::class);
+}
+
 }
