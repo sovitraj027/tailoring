@@ -26,33 +26,31 @@
                                     <tr>
                                         <th class="checkbox-column">SN</th>
                                        <th>Name</th>     
-                                       <th>Address</th>   
-                                       <th>contact</th>  
+                                       <th>Email</th>   
                                        <th>status</th>                   
                      
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                     @forelse ($members as $member)   
+                                     @forelse ($customers as $customer)   
                                         <tr>
                                             <td class="checkbox-column">
                                                 {{$loop->iteration}}
                                             </td>
                                        
-                                            <td>{{$member->name}}</td>
-                                            <td>{{$member->address}}</td>
-                                            <td>{{$member->mobile}}</td>
-                                       
-                                                @if($member->status==1)
+                                            <td>{{$customer->name}}</td>
+                                            <td>{{$customer->email}}</td>
+
+                                                @if($customer->status==1)
                                                 <td>
-                                                    <a href="{{route('membership.unverified',$member->id)}}"
-                                                        class="btn btn-sm btn-danger" >Unverified</a>
+                                                    <a href="{{route('customer.reject',$customer->id)}}"
+                                                        class="btn btn-sm btn-danger" >Reject</a>
                                                 </td>
                                             @else
                                                 <td>
-                                                    <a href="{{route('membership.verified',$member->id)}}"
-                                                        class="btn btn-sm btn-success" >Verified</a>
+                                                    <a href="{{route('customer.accept',$customer->id)}}"
+                                                        class="btn btn-sm btn-success" >Accept</a>
                                                 </td>
                                             @endif
                                         
@@ -80,33 +78,6 @@
 @push('inlinejs')
     @include('scripts.data_table_script')
     <script>
-$(document).ready(function(){
-    
-  $("zero-config").DataTable()
- 
-}); 
-$(function() {
-   
-        $('.toggle-class').change(function() {
-            console.log('erhe')
-        var status = $(this).prop('checked') == true ? 1 : 0;
-        var member_id = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '/changeStatus',
-                data: {'status': status, 'member_id': member_id},
-                success: function(data){
-                    console.log('Success')
-                },
-                error: function (xhr) {
-                   console.log(xhr.responseText); //saves alot of time during debugging
-                }
-            });
-        
-        });
-    });
-   
 
     </script>
     

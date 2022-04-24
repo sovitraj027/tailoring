@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCashesTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCashesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cashes', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cloth_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->double('price')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ class CreateCashesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cashes');
+        Schema::dropIfExists('customers');
     }
 }

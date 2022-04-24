@@ -16,4 +16,7 @@ class RatingController extends Controller
                 ['rating' => $request->rating,]
             );
         }
+
+
+        
 }

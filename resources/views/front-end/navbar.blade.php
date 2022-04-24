@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">About us</a>
+                        <a class="nav-link" href="{{ route('about') }}">Tailors</a>
                     </li>
                     @if (!Auth::user())
                         @if (Route::has('login'))

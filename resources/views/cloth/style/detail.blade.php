@@ -12,7 +12,7 @@ color:#ab8181`;
 position: absolute;
 left:45%;
 right:50%;
-height: 70%;
+height: 85%;
 width: 100%;
 
 transform: translate(-50%,5%);
@@ -29,14 +29,14 @@ height:100px;
 font-size:15px;
 }
 .right-side-pro-detail p{
-font-size:25px;
-color:#a1a1a1;
+font-size:20px;
+color:#a32020;
 }
 .right-side-pro-detail .price-pro{
-color:#E45641;
+color:#100ac5;
 }
 .right-side-pro-detail .tag-section{
-font-size:18px;
+font-size:16px;
 color:#5D4C46;
 }
 .pro-box-section .pro-box img{

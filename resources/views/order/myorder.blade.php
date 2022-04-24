@@ -27,8 +27,14 @@
                         </h5>
                     </div>
                     <div>
-                        <h5 style="color:rgb(111, 111, 220);font-weight:bolder">Rs
-                            {{ $cloth->price * $cloth->cart->quantity }}</h5>
+                        @if ($is_membership)
+                            <h5 style="color:rgb(111, 111, 220);font-weight:bolder">Rs
+                                {{ $cloth->price * $cloth->cart->quantity - $cloth->price * $cloth->cart->quantity * (20 / 100) }}
+                            </h5>
+                        @else
+                            <h5 style="color:rgb(111, 111, 220);font-weight:bolder">Rs
+                                {{ $cloth->price * $cloth->cart->quantity }}</h5>
+                        @endif
                     </div>
                     <div class="d-flex align-items-center">
 
@@ -47,13 +53,17 @@
             @endforelse
 
             <div class="d-flex flex-row float-right mt-4 p-1 mb-2 bg-dark rounded"><button
-                    class="btn btn-warning btn-sm ml-2 mb-3 pay-button" type="button"> <a href="{{ route('welcome') }}"
-                        style="color:rgb(200, 33, 111);font-gray:bolder">Back To Shop</a>
+                    class="btn btn-warning btn-sm ml-2 mb-3 pay-button" type="button"> <a
+                        href="{{ route('welcome') }}" style="color:rgb(200, 33, 111);font-gray:bolder">Back To
+                        Shop</a>
                 </button>
 
-                <button class="btn-sm ml-3 mb-3 pay-button" style="background: #39075c" id="payment-button" type="button">Pay
+                <button class="btn-sm ml-3 mb-3 pay-button" style="background: #39075c" id="payment-button"
+                    type="button">Pay
                     with Khalti</button>
-                    <form action="https://uat.esewa.com.np/epay/main" method="POST">
+
+                <form action="https://uat.esewa.com.np/epay/main" method="POST">
+                    @foreach ($clothes as $cloth)
                         <input value="100" name="tAmt" type="hidden">
                         <input value="90" name="amt" type="hidden">
                         <input value="5" name="txAmt" type="hidden">
@@ -62,17 +72,24 @@
                         <input value="EPAYTEST" name="scd" type="hidden">
                         <input value="125478343" name="pid" type="hidden">
                         <input value="http://esewa.test/payment-verify?q=su" type="hidden" name="su">
-                        <input value="http://merchant.com.np/page/esewa_payment_failed?q=fu" type="hidden" name="fu">
-                        <button class="btn-sm ml-2 pay-button" style="background: #16d80c" id="payment-button" type="submit">Pay
-                            with Esewa</button>
-                        </form>
+                    @endforeach
+                    <input value="http://merchant.com.np/page/esewa_payment_failed?q=fu" type="hidden" name="fu">
+                    <button class="btn-sm ml-2 pay-button" style="background: #16d80c" id="payment-button"
+                        type="submit">Pay
+                        with Esewa</button>
+                </form>
                 <form action="{{ route('cashstore') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @foreach ($clothes as $cloth)
                         <input type="hidden" name="cloth_id" value="{{ $cloth->id }}">
                         <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                         <input type="hidden" name="quantity" value="{{ $cloth->cart->quantity }}">
-                        <input type="hidden" name="price" value="{{ $cloth->price * $cloth->cart->quantity }}">
+                        @if ($is_membership)
+                            <input type="hidden" name="price"
+                                value="{{ $cloth->price * $cloth->cart->quantity - $cloth->price * $cloth->cart->quantity * (20 / 100) }}">
+                        @else
+                            <input type="hidden" name="price" value="{{ $cloth->price * $cloth->cart->quantity }}">
+                        @endif
                     @endforeach
                     <button class="btn-sm ml-2 pay-button" style="background: #ea0436" id="payment-button"
                         type="submit">Pay

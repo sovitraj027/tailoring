@@ -15,7 +15,7 @@
 
         <div class="row m-0">
             <div class="col-lg-4 left-side-product-box pb-3">
-                 <div class="xzoom" id="image-1"><img src="/storage/cloth-image/{{ $cloth->image }}" xl width="20" height="300" class="border p-3"  data-zoom-image="large//storage/cloth-image/{{ $cloth->image }}"></div>
+                 <div class="xzoom" id="image-1"><img src="/storage/cloth-image/{{ $cloth->image }}" xl width="40" height="300" class="border p-3"  data-zoom-image="large//storage/cloth-image/{{ $cloth->image }}"></div>
                 <span class="sub-img">
                 @foreach ($cloth->designs as $item) 
                 <img src="/storage/cloth-designs/{{ $item->image }}"class="xzoom-1"  height="500" width="100">
@@ -23,21 +23,28 @@
                 </span>
         </div>
              <div class="col-lg-8">
-                <div class="right-side-pro-detail border p-3 m-0">
+                <div class="right-side-pro-detail border p-2 m-0">
                       <div class="row">
                             <div class="col-lg-12">
-                            <p class="m-0 p-0">{{$cloth->name}}</p>
+                            <p class="m-0 p-0">Name: {{$cloth->name}}</p>
                             </div>
                             <div class="col-lg-12">
-                            <p class="m-0 p-0 price-pro">${{$cloth->price}}</p>
+                           <h6> <p class="m-0 p-0 price-pro">Actual Price: ${{$cloth->price}}</p></h6>
+                            <p class="m-0 p-0 ">With Discount: ${{($cloth->price)-($cloth->price)*(20/100)}}</p>
+
+
                             <hr class="p-0 m-0">
                             </div>
                             <div class="col-lg-12 pt-2">
-                                <h5>description</h5>
+                                <h5>Description</h5>
                                 <p>{!!$cloth->description!!}</p><hr class="m-0 pt-2 mt-2">
                             </div>
                              <div class="col-lg-12">
                             <p class="tag-section"><strong>Brand : </strong>{{$cloth->brand}}</p>
+                            <p class="tag-section"><strong>Special Offer : </strong>20% For members only</p>
+                            <p class="tag-section"><strong>Hurry up Get your Membership </strong><a href="{{route('getMembership')}}">Click here </a></p>
+
+
 
                             <form action="{{route('addToCart',$cloth->id)}}" method="POST" enctype="multipart/form-data">
                                 @csrf

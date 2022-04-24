@@ -101,11 +101,11 @@
                             <select class="selectpicker form-control @error('experience') is-invalid @enderror" name="experience" id="experience"
                             value="{{isset($tailor_profile)? $tailor_profile->experience : old('experience')}}">
                                 <option value="disabled" selected disabled>Enter Your Experience</option>
-                                    <option value="OneYear">One Year</option>
-                                    <option value="TwoYears">Two Years</option>
-                                    <option value="ThreeYears">Three Years</option>
-                                    <option value="FourYears">Four Years</option>
-                                    <option value="FiveYears">Five Years</option>
+                                    <option value="One Year">One Year</option>
+                                    <option value="Two Years">Two Years</option>
+                                    <option value="Three Years">Three Years</option>
+                                    <option value="Four Years">Four Years</option>
+                                    <option value="Five Years">Five Years</option>
                                     
                             </select>
                             @error('experience')

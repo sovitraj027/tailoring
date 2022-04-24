@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaiorProfileRequest;
+use App\Models\Customer;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Traits\FileUploadTrait;
@@ -70,7 +71,8 @@ class TailorProfileController extends Controller
         return view('front-end.rating',[
             'tailor'=>TailorProfile::where('id',$tailor_id)->first(),
             'rating' => $rating,
-            'avg_rating' => Rating::where('tailor_id', $tailor_id)->pluck('rating')->avg()
+            'avg_rating' => Rating::where('tailor_id', $tailor_id)->pluck('rating')->avg(),
+            'user_exist'=>Customer::where('user_id',Auth::user()->id)->where('status','1')->exists()
 
         ]
     );
