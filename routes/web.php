@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tailor-request', [CustomerController::class, 'sendRequest'])->name('sendRequest');
 
 
-    Route::group(['middleware' => 'admin', 'tailor'], function () {
+    Route::group(['middleware' => 'admin', 'middleware'=>'tailor'], function () {
 
         Route::get('customer/accept/{customer}', [CustomerController::class, 'accept'])->name('customer.accept');
         Route::get('customer/reject/{customer}', [CustomerController::class, 'reject'])->name('customer.reject');

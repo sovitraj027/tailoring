@@ -17,6 +17,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('about') }}">Tailors</a>
                     </li>
+                   
                     @if (!Auth::user())
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -41,6 +42,19 @@
                   </li> 
                     @endif
                     @endif   
+                    @if (Auth::user())
+                    <li class="nav-item">
+                        
+                        <a  class="nav-link" href="javascript:void" onclick="$('#logout-form').submit();">
+                            LogOut
+                        </a>
+                        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
