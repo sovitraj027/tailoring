@@ -44,9 +44,17 @@
                                             <td>{{$member->address}}</td>
                                             <td>{{$member->mobile}}</td>
                                             <td>
-                                              <input data-id="{{$member->id}}" class="toggle-class" type="checkbox" 
-                                              data-onstyle="success" data-offstyle="danger" data-toggle="toggle" 
-                                              data-on="Verified" data-off="Unverified" {{ $member->status ? 'checked' : '' }}>
+                                                @if($member->status==1)
+                                                <td>
+                                                    <a href="{{route('membership.unverified',$member->id)}}"
+                                                        class="btn btn-sm btn-danger" >Unverified</a>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <a href="{{route('membership.verified',$member->id)}}"
+                                                        class="btn btn-sm btn-success" >Verified</a>
+                                                </td>
+                                            @endif
                                            </td>
                                           
                                         </tr>
@@ -73,10 +81,14 @@
     @include('scripts.data_table_script')
     <script>
 $(document).ready(function(){
-  $("member_table").DataTable()
-});
+    
+  $("zero-config").DataTable()
+ 
+}); 
 $(function() {
+   
         $('.toggle-class').change(function() {
+            console.log('erhe')
         var status = $(this).prop('checked') == true ? 1 : 0;
         var member_id = $(this).data('id');
             $.ajax({
@@ -86,11 +98,34 @@ $(function() {
                 data: {'status': status, 'member_id': member_id},
                 success: function(data){
                     console.log('Success')
+                },
+                error: function (xhr) {
+                   console.log(xhr.responseText); //saves alot of time during debugging
                 }
             });
         
         });
     });
+   
+
+    //
+    // $(function () {
+    //         $('#zero-config').on('change', '.toggle-class', function () {
+    //             var status = $(this).prop('checked') == true ? 1 : 0;
+    //             var member_id = $(this).data('id');
+    //             $.ajax({
+    //                 type: 'GET',
+    //                 datatype: "json",
+    //                 url: "{{ url('/changeStatus') }}",
+    //                 data: {'status': status, 'member_id': member_id},
+    //                 success: function (data) {
+    //                     console.log(data.success)
+    //                 }
+    //             })
+    //         })
+    //     })
+
+
     </script>
     
     

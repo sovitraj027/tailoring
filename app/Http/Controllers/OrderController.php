@@ -29,7 +29,7 @@ class OrderController extends Controller
                 'cloth_id'=>$id
             ];
             Cart::create($requestData);
-            return redirect()->route('welcome')->with('success', 'Successfully!');
+            return redirect()->route('myorder')->with('success', 'Successfully!');
         }
   
     }

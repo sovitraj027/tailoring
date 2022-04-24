@@ -17,7 +17,6 @@
 @endpush
 
 @section('content')
-
     <form method="POST" action="{{isset($tailor_profile) ? route('tailor_profile.update') : route('tailor_profile.store')}}"
           enctype="multipart/form-data">
         @csrf

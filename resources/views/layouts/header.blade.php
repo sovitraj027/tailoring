@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </div>
-                    @if(auth()->user()->user_type == 1)
+                    @if(auth()->user()->user_type == 2)
                     <div class="dropdown-item">
                     
                             <a href="{{route('tailor_profile', auth()->user()->name)}}">

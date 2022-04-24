@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\TailorMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'seeker' => \App\Http\Middleware\Seeker::class,
         'company' => \App\Http\Middleware\Company::class,
         'admin' => \App\Http\Middleware\Admin::class,
+        'tailor'=>\App\Http\Middleware\TailorMiddleware::class,
     ];
 }

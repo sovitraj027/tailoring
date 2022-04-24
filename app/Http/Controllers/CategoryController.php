@@ -8,8 +8,8 @@ use App\Http\Requests\CategoryRequest;
 class CategoryController extends Controller
 {
     public function index()
-    {     
-       return view('category.index', [
+    {
+        return view('category.index', [
             'categories' => Category::latest()->get()
         ]);
     }
@@ -38,7 +38,7 @@ class CategoryController extends Controller
     }
 
     public function update(CategoryRequest $request, Category $category)
-    {     
+    {
         $category->update($request->validated());
         return redirect()->route('categories.index')->with('success', 'Category Updated Successfully!');
     }

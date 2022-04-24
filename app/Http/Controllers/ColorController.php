@@ -10,17 +10,19 @@ class ColorController extends Controller
 {
     public function index()
     {
-        return view('color.index',
-    [
-        'colors'=>Color::latest()->get()
-    ]);
+        return view(
+            'color.index',
+            [
+                'colors' => Color::latest()->get()
+            ]
+        );
     }
 
     public function create()
     {
         return view('color.create');
     }
-    
+
     public function edit(Color $color)
     {
         return view('color.edit', compact('color'));
@@ -31,7 +33,6 @@ class ColorController extends Controller
 
         Color::create($request->validated());
         return redirect()->route('colors.index')->with('success', 'Color Created Successfully!');
-        
     }
 
     public function update(ColorRequest $request, Color $color)

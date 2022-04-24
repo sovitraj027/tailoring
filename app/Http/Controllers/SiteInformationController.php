@@ -45,7 +45,6 @@ class SiteInformationController extends Controller
             }
             $this->fileUpload($site_information, 'image', 'site-info-image', false);
         }
-         return redirect()->route('home')->with('success', 'SiteInformation Updated Successfully!');
+        return redirect()->route('home')->with('success', 'SiteInformation Updated Successfully!');
     }
-
 }
