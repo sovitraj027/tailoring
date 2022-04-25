@@ -1,5 +1,11 @@
 @include('order.myorderstyle')
-
+<style>
+    #shop {
+     color: #e3550e;
+    text-decoration: none;
+    font-size:125%;
+}
+</style>
 
 <div class="container mt-5 mb-5">
     <div class="d-flex justify-content-center row">
@@ -52,53 +58,61 @@
                 <td>No item </td>
             @endforelse
 
-            <div class="d-flex flex-row float-right mt-4 p-1 mb-2 bg-dark rounded"><button
-                    class="btn btn-warning btn-sm ml-2 mb-3 pay-button" type="button"> <a
-                        href="{{ route('welcome') }}" style="color:rgb(200, 33, 111);font-gray:bolder">Back To
-                        Shop</a>
-                </button>
+            @if ($clothes->count() > 0)
+                <div class="d-flex flex-row float-right mt-4 p-1 mb-2 bg-dark rounded"><button
+                        class="btn btn-warning btn-sm ml-2 mt-3 mb-3 pay-button" type="button"> <a
+                            href="{{ route('welcome') }}" style="color:rgb(33, 26, 29);font-gray:bolder">
+                            Shop More</a>
+                    </button>
 
-                <button class="btn-sm ml-3 mb-3 pay-button" style="background: #39075c" id="payment-button"
-                    type="button">Pay
-                    with Khalti</button>
+                    <button class="btn-sm ml-3 mb-3 mt-3 pay-button" style="background: #39075c" id="payment-button"
+                        type="button">Pay
+                        with Khalti</button>
 
-                <form action="https://uat.esewa.com.np/epay/main" method="POST">
-                    @foreach ($clothes as $cloth)
-                        <input value="100" name="tAmt" type="hidden">
-                        <input value="90" name="amt" type="hidden">
-                        <input value="5" name="txAmt" type="hidden">
-                        <input value="2" name="psc" type="hidden">
-                        <input value="3" name="pdc" type="hidden">
-                        <input value="EPAYTEST" name="scd" type="hidden">
-                        <input value="125478343" name="pid" type="hidden">
-                        <input value="http://esewa.test/payment-verify?q=su" type="hidden" name="su">
-                    @endforeach
-                    <input value="http://merchant.com.np/page/esewa_payment_failed?q=fu" type="hidden" name="fu">
-                    <button class="btn-sm ml-2 pay-button" style="background: #16d80c" id="payment-button"
-                        type="submit">Pay
-                        with Esewa</button>
-                </form>
-                <form action="{{ route('cashstore') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @foreach ($clothes as $cloth)
-                        <input type="hidden" name="cloth_id" value="{{ $cloth->id }}">
-                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                        <input type="hidden" name="quantity" value="{{ $cloth->cart->quantity }}">
-                        @if ($is_membership)
-                            <input type="hidden" name="price"
-                                value="{{ $cloth->price * $cloth->cart->quantity - $cloth->price * $cloth->cart->quantity * (20 / 100) }}">
-                        @else
-                            <input type="hidden" name="price" value="{{ $cloth->price * $cloth->cart->quantity }}">
-                        @endif
-                    @endforeach
-                    <button class="btn-sm ml-2 pay-button" style="background: #ea0436" id="payment-button"
-                        type="submit">Pay
-                        With Cash</button>
-                </form>
+                    <form action="https://uat.esewa.com.np/epay/main" method="POST">
+                        @foreach ($clothes as $cloth)
+                            <input value="100" name="tAmt" type="hidden">
+                            <input value="90" name="amt" type="hidden">
+                            <input value="5" name="txAmt" type="hidden">
+                            <input value="2" name="psc" type="hidden">
+                            <input value="3" name="pdc" type="hidden">
+                            <input value="EPAYTEST" name="scd" type="hidden">
+                            <input value="125478343" name="pid" type="hidden">
+                            <input value="http://esewa.test/payment-verify?q=su" type="hidden" name="su">
+                        @endforeach
+                        <input value="http://merchant.com.np/page/esewa_payment_failed?q=fu" type="hidden" name="fu">
+                        <button class="btn-sm ml-2 mt-3 pay-button" style="background: #16d80c" id="payment-button"
+                            type="submit">Pay
+                            with Esewa</button>
+                    </form>
+                    <form action="{{ route('cashstore') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @foreach ($clothes as $cloth)
+                            <input type="hidden" name="cloth_id" value="{{ $cloth->id }}">
+                            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                            <input type="hidden" name="quantity" value="{{ $cloth->cart->quantity }}">
+                            @if ($is_membership)
+                                <input type="hidden" name="price"
+                                    value="{{ $cloth->price * $cloth->cart->quantity - $cloth->price * $cloth->cart->quantity * (20 / 100) }}">
+                            @else
+                                <input type="hidden" name="price"
+                                    value="{{ $cloth->price * $cloth->cart->quantity }}">
+                            @endif
+                        @endforeach
+                        <button class="btn-sm ml-2 mt-3 pay-button" style="background: #ea0436" id="payment-button"
+                            type="submit">Pay
+                            With Cash</button>
+                    </form>
 
-            </div>
-
-
+                </div>
+            @else
+                <div class=""><button
+                        class="btn btn-dark col-lg-12 ml-2 mb-3 mt-3 pay-button" id="shop" type="button"> <a
+                            href="{{ route('welcome') }}"  >
+                            Shop</a>
+                    </button>
+                </div>
+            @endif
 
         </div>
 

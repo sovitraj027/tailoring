@@ -16,6 +16,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('tailor_id')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->boolean('status')->default(0);

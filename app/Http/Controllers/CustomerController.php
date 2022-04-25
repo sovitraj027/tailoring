@@ -12,10 +12,11 @@ class CustomerController extends Controller
         $requestData = [
             'name' => $request->name,
             'user_id' => $request->user_id,
-            'email' => auth()->user()->email
+            'email' => auth()->user()->email,
+            'tailor_id'=>$request->tailor_id
 
         ];
-        if (Customer::where('user_id', $request->user_id)->where('email', auth()->user()->email)->exists()) {
+        if (Customer::where('user_id', $request->user_id)->where('email', auth()->user()->email)->where('tailor_id',$request->tailor_id)->exists()) {
             return redirect()->back();
         } else {
             Customer::create($requestData);
@@ -25,8 +26,9 @@ class CustomerController extends Controller
 
     public function getCustomers()
     {
+        
         return view('customer.index', [
-            'customers' => Customer::latest()->get()
+            'customers' => Customer::where('tailor_id',auth()->id())->get()
         ]);
     }
 

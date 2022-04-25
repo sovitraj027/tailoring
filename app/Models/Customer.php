@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
-    protected $fillable=['user_id','email','status','name'];
+    protected $fillable=['user_id','email','status','name','tailor_id'];
 }

@@ -1,4 +1,36 @@
-@extends('front-end.header')
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link
+        href="{{ asset('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap') }}"
+        rel="stylesheet">
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!--
+
+TemplateMo 546 Sixteen Clothing
+
+https://templatemo.com/tm-546-sixteen-clothing
+
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/templatemo-sixteen.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+
+</head>
 @include('front-end.navbar')
 
   
@@ -6,12 +38,12 @@
 @include('cloth.style.detail')
 
 
-<section>
-   <div class="container">
+ <section>
+   <div class="container ">
         <div class="col-lg-8 border p-3 main-section bg-white">
-        <div class="row hedding m-0 pl-3 pt-0 pb-3">
+        {{-- <div class="row hedding m-0 pl-3 pt-0 pb-3">
         <a href="{{route('welcome')}}" class="float-right">back</a>  
-        </div>
+        </div> --}}
 
         <div class="row m-0">
             <div class="col-lg-4 left-side-product-box pb-3">
@@ -80,15 +112,7 @@
            </div>
         </div>
    
-</section>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
-<script>
-$(function(){
- $(".xzoom").xzoom({
-     zoomWidth: 400,
-     tint:'#333',
-     Xoffset:15;
- });
-});
-</script>
+</section> 
+{{-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script> --}}
+

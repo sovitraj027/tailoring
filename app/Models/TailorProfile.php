@@ -9,4 +9,8 @@ class TailorProfile extends Model
 {
     use HasFactory;
     protected $fillable=['name','avatar','description','specialist','phone','location','experience'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

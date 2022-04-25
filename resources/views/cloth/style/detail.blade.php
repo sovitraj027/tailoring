@@ -14,6 +14,7 @@ left:45%;
 right:50%;
 height: 85%;
 width: 100%;
+margin-top: 60px;
 
 transform: translate(-50%,5%);
 }
