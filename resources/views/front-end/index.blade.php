@@ -17,6 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+               
                     <div class="filters">
                         <ul>
                             <li class="active" data-filter=""> <a href="{{ route('allproducts') }}"> All</a></li>
@@ -26,7 +27,8 @@
                             <li data-filter=""> <a href="{{ route('elders') }}">Elders</a> </li>
                         </ul>
                     </div>
-                </div>
+                    @endif
+               
 
                 @foreach ($clothes as $item)
                     <div class="col-md-4">

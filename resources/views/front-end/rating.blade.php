@@ -66,7 +66,7 @@
     
                         <div class=" mt-1 p-1 mb-2 ">
                             @if ($user_exist)
-                                <button class=" btn btn-dark btn btn-sm float-right " type="submit">Chat</button>
+                                <button class=" btn btn-primary btn btn-sm float-right " type="submit">Please visit Our Tailor</button>
                             @else
                                 <form action="{{ route('sendRequest') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -74,8 +74,12 @@
                                     <input type="hidden" name="eamil" value="{{ auth()->user()->email }}">
                                     <input type="hidden" name="name" value="{{ auth()->user()->name }}">
                                     <input type="hidden" name="tailor_id" value="{{ $tailor->user->id }}">
+                                    @if($cart_exist==true)
+                                    @if($request_exist==false)
                                     <button class=" btn btn-primary btn btn-sm float-right mr-2" type="submit">Send
                                         Request</button>
+                                    @endif
+                                    @endif
                                 </form>
                             @endif
                         </div>

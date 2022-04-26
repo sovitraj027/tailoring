@@ -53,39 +53,46 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tailor-request', [CustomerController::class, 'sendRequest'])->name('sendRequest');
 
 
-    Route::group(['middleware' => 'admin', 'middleware'=>'tailor'], function () {
 
+
+    Route::group(['middleware' => 'tailor'], function () {
+
+
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         Route::get('customer/accept/{customer}', [CustomerController::class, 'accept'])->name('customer.accept');
         Route::get('customer/reject/{customer}', [CustomerController::class, 'reject'])->name('customer.reject');
-        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         Route::get('tailor/profile/{name}', [TailorProfileController::class, 'profile'])->name('tailor_profile');
         Route::post('tailor/profile/store', [TailorProfileController::class, 'store'])->name('tailor_profile.store');
         Route::patch('tailor/profile/update', [TailorProfileController::class, 'update'])->name('tailor_profile.update');
-        Route::group(['middleware' => 'admin'], function () {
+    });
 
-            Route::get('member/verify/{member}', [MemberController::class, 'verified'])->name('membership.verified');
-            Route::get('member/unverify/{member}', [MemberController::class, 'unverified'])->name('membership.unverified');
-            Route::get('cash/paid/{id}', [CashController::class, 'paid'])->name('cash.paid');
-            Route::get('cash/unpaid/{id}', [CashController::class, 'unpaid'])->name('cash.unpaid');
+    //
+    Route::group(['middleware' => 'admin'], function () {
 
-            //fabrics
-            Route::resource('categories', CategoryController::class);
-            //tailors
-            Route::resource('tailors', TailorController::class);
-            //colors
-            Route::resource('colors', ColorController::class);
 
-            //clothes
-            Route::resource('clothes', ClothController::class);
-            Route::get('cloth/design/{id}', [ClothDesignController::class, 'clothDesign'])->name('viewDesign');
-            Route::get('cloths/{id}', [ClothDesignController::class, 'createDesign'])->name('createDesign');
-            Route::post('clothdesign/add', [ClothDesignController::class, 'AddDesign'])->name('AddDesign');
-            Route::get('design/edit/{id}', [ClothDesignController::class, 'editDesign'])->name('EditDesign');
-            Route::post('design/update/{id}', [ClothDesignController::class, 'updateDesign'])->name('UpdateDesign');
-            Route::get('design/delete/{id}', [ClothDesignController::class, 'deleteDesign'])->name('DeleteDesign');
-            Route::resource('designs', ClothDesignController::class);
-            //site information
-            Route::resource('site-informations', SiteInformationController::class)->except(['destroy', 'show', 'index']);
-        });
+        //fabrics
+        Route::resource('categories', CategoryController::class);
+        //tailors
+        Route::resource('tailors', TailorController::class);
+        //colors
+        Route::resource('colors', ColorController::class);
+
+        //clothes
+        Route::get('cash/paid/{id}', [CashController::class, 'paid'])->name('cash.paid');
+        Route::get('cash/unpaid/{id}', [CashController::class, 'unpaid'])->name('cash.unpaid');
+
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::get('member/verify/{member}', [MemberController::class, 'verified'])->name('membership.verified');
+        Route::get('member/unverify/{member}', [MemberController::class, 'unverified'])->name('membership.unverified');
+        Route::resource('clothes', ClothController::class);
+        Route::get('cloth/design/{id}', [ClothDesignController::class, 'clothDesign'])->name('viewDesign');
+        Route::get('cloths/{id}', [ClothDesignController::class, 'createDesign'])->name('createDesign');
+        Route::post('clothdesign/add', [ClothDesignController::class, 'AddDesign'])->name('AddDesign');
+        Route::get('design/edit/{id}', [ClothDesignController::class, 'editDesign'])->name('EditDesign');
+        Route::post('design/update/{id}', [ClothDesignController::class, 'updateDesign'])->name('UpdateDesign');
+        Route::get('design/delete/{id}', [ClothDesignController::class, 'deleteDesign'])->name('DeleteDesign');
+        Route::resource('designs', ClothDesignController::class);
+        //site information
+        Route::resource('site-informations', SiteInformationController::class)->except(['destroy', 'show', 'index']);
     });
 });
