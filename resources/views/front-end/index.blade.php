@@ -27,7 +27,7 @@
                             <li data-filter=""> <a href="{{ route('elders') }}">Elders</a> </li>
                         </ul>
                     </div>
-                    @endif
+                 
                
 
                 @foreach ($clothes as $item)
